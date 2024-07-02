@@ -1,0 +1,6 @@
+ip access-list IPV4-CONTROL-PLANE-FILTER
+   permit tcp host 96.97.33.165 any eq gnmi
+
+management api gnmi
+   transport grpc def
+   provider eos-native
