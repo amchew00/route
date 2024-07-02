@@ -1,0 +1,45 @@
+grafana / telegraf / influx server end points with listening ports
+Blue Zone IP - 96.97.33.165 port3000
+Red Zone IP - 10.26.22.6 port3000
+
+ JTAC
+ In regards to gRPC telemetry connections. 
+ We have a Grafana box using telegraf to connect to our routers and pull telemetry data (bandwidth / cpu / ect) via gRPC.  
+ Telegraf is using a user/pass that is locally configured on the juniper and using open-config for all strings.
+ I'm reading over this Junos Telemetry Interface User Guide and trying to figure out what type of profile should be configured on the juniper. 
+ 
+Hostname: ar01-n.dca-dt.pa.crnrstn
+Model:	qfx10002-72q
+Junos:	19.2R3.5 flex
+serial:	DJ275
+
+Telegraf 10.26.22.6 port 6030
+
+
+JTAC
+set system services ssh
+set system services extension-service request-response grpc clear-text address <loopback0>
+set system services extension-service request-response grpc clear-text port <router-grpc-listening-port> (6030 if possible)
+set system services extension-service request-response grpc skip-authentication
+set system services extension-service notification allow-clients address <telegraf-server-IP-address>
+
+
+
+#Set to allow
+set system services ssh
+#Didn't set as we're using a user/pass for this connection. 
+set system services extension-service request-response grpc skip-authentication
+#Address to listen for incoming connections 
+set system services extension-service request-response grpc clear-text address 96.109.137.0
+#Port number to accept incoming connections (1..65535)
+set system services extension-service request-response grpc clear-text port 6030
+#Source address of inbound Telegraf connections
+set system services extension-service notification allow-clients address 10.26.22.6
+
+
+Config Help:
+https://supportportal.juniper.net/s/article/telemetry-configuration-example
+
+
+https://github.comcast.com/TES/XLABS_Network_Team
+
