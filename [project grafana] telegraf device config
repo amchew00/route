@@ -1,0 +1,154 @@
+[[inputs.gnmi]]
+  ## Address and port of the GNMI GRPC server
+  addresses = ["96.109.129.68:16030"]
+  #isis
+
+  ## credentials
+  username = "username"
+  password = "password"
+
+  ## redial in case of failures after
+  redial = "10s"
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "ocsystem"
+
+    origin = "openconfig"
+    path = "/system/config/hostname"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "platformname"
+
+    origin = "openconfig"
+    path = "/components/component/name"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "memory"
+
+    origin = "openconfig"
+    path = "components/component/state/memory"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "ifname"
+
+    origin = "openconfig"
+    path = "/interfaces/interface"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "ifcounters"
+    origin = "openconfig"
+    path = "/interfaces/interface/state/counters"
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "ifconfig"
+
+    origin = "openconfig"
+    path = "/interfaces/interface/config/description"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "ifoperstatus"
+
+    origin = "openconfig"
+    path = "/interfaces/interface/state/oper-status"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "netinstprotocolsbgpstate"
+
+    origin = "openconfig"
+    path = "/network-instances/network-instance/protocols/protocol/bgp/neighbors/neighbor/state"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "openconfig_isis"
+
+    origin = "openconfig"
+    path = "network-instances/network-instance/protocols/protocol/isis/interfaces/interface/state"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "openconfig_isis_enabled"
+
+    origin = "openconfig"
+    path = "network-instances/network-instance/protocols/protocol/isis/interfaces/interface/state/enabled"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+
+
+  [[inputs.gnmi.subscription]]
+    ## Name of the measurement
+    name = "openconfig_bgp"
+
+    origin = "openconfig"
+    path = "/network-instances/network-instance/protocols/protocol/bgp/"
+
+    subscription_mode = "sample"
+    sample_interval = "10s"
+
+
+
+ [[inputs.lanz]]
+  servers = [
+    "tcp://rar01.bg117-mtlrl.nj.crnrstn.comcast.net:50001"
+  ]
+
+[[outputs.influxdb]]
+  urls = ["http://127.0.0.1:8086"]
+  timeout = "5s"
+  database = "cisco"
