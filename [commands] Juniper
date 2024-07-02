@@ -1,0 +1,41 @@
+TCPDUMP
+
+> start shell user root
+% tcpdump -n -c 1000 -i <Insert interface#> -w /var/tmp/monitor.pcap ( capture the traffic during next polling)
+Example: tcpdump -n -c 1000 -i ge-0/0/0 -w /var/tmp/monitor.pcap
+
+
+
+
+
+TRACE OPTIONS
+set the traceoptions
+config
+set services analytics traceoptions file agentd-trace
+set services analytics traceoptions file files 5
+set services analytics traceoptions flag all
+set system services extension-service traceoptions file services-trace
+set system services extension-service traceoptions file files 5
+set system services extension-service traceoptions flag all
+commit
+exit
+
+show system connections | grep 6030
+show system connections | grep 96.109.137.0
+
+Example: Here is my telnet test connection to 6030 along with my ssh 22 connection.
+
+achoin836@ar01-n.dca-dt.pa.crnrstn> show system connections | grep 22 
+tcp4       0      0  96.109.137.0.52280                            10.248.20.23.49                               TIME_WAIT
+tcp4       0      0  96.109.137.0.22                               10.30.84.165.51820                            ESTABLISHED
+tcp4       0      0  192.168.1.2.6022                              192.168.1.1.59887                             ESTABLISHED
+tcp4       0      0  *.6022                                        *.*                                           LISTEN
+tcp4       0      0  *.22                                          *.*                                           LISTEN
+
+{master:0}
+achoin836@ar01-n.dca-dt.pa.crnrstn> show system connections | grep 6030  
+tcp4       0      0  96.109.137.0.6030                             10.30.84.165.50542                            ESTABLISHED
+tcp4       0      0  96.109.137.0.6030                             *.*                                           LISTEN
+
+{master:0}
+achoin836@ar01-n.dca-dt.pa.crnrstn>
