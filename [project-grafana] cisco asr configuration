@@ -1,2 +1,24 @@
 input asr config here and show commands to verify 
 
+
+grpc
+ port 16030
+ no-tls
+!
+telemetry model-driven
+ destination-group xlabs-grafana
+  address-family ipv4 10.26.22.6 port 6030
+   encoding self-describing-gpb
+   protocol tcp
+  !
+ !
+!
+tcp window-size 65535
+tcp path-mtu-discovery
+tpa
+ vrf default
+  address-family ipv4
+   update-source dataports Loopback0
+  !
+ !
+!
