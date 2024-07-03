@@ -42,6 +42,25 @@ Show the packets on screen with a -A
 % tcpdump -n -c 1000 -i lo0 host 10.26.22.6 port 6030 -A -w /var/tmp/TELEGRAF01.pcap
 
 
+CHANGE ROOT LOGIN SO THE ABOVE AND BELOW WORKS
+
+system {
+    host-name ar01-n.dca-dt.pa.crnrstn;
+    root-authentication {
+        encrypted-password "$5$N86YnhuG$27eqfhEVQVze9NAA9aDHveKyy1gLAZz9PyMCgk5p1r8"; ## SECRET-DATA
+    }
+
+update the above
+configure
+delete system root-authentication
+set system root-authentication plain-text-password
+New password:
+Retype new password:
+commit
+exit
+start shell user root
+
+
 TRACE OPTIONS
 set the traceoptions
 config
