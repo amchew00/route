@@ -40,6 +40,29 @@ set system services extension-service notification allow-clients address 10.26.2
 Config Help:
 https://supportportal.juniper.net/s/article/telemetry-configuration-example
 
+CHECKING THE OPERATION
+achoin836@ar01-n.dca-dt.pa.crnrstn> show services analytics agent detail 
+Analytics agent:
+Process ID          : 7508
+Configuration File  : /var/etc/ntf-agent.conf
+Log File            : /var/log/ntf-agent.log
+Service Agent Count : 0
+
+{master:0}
+
+UNHIDE OPENCONFIG FROM CLI
+achoin836@ar01-n.dca-dt.pa.crnrstn# set system schema openconfig unhide 
+
+{master:0}[edit]
+achoin836@ar01-n.dca-dt.pa.crnrstn# commit 
+configuration check succeeds
+commit complete
+
+FIND THE STRINGS YOU NEED
+
+https://apps.juniper.net/telemetry-explorer/search?q=hostname
+
+
 
 https://github.comcast.com/TES/XLABS_Network_Team
 
