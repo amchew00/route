@@ -41,6 +41,18 @@ Telegraf box IP and Port
 Show the packets on screen with a -A
 % tcpdump -n -c 1000 -i lo0 host 10.26.22.6 port 6030 -A -w /var/tmp/TELEGRAF01.pcap
 
+ACTUALLY WORKING TCPDUMP
+root@ar01-n:RE:0% tcpdump -n -c 1000 -i lo0 host 10.26.22.6 
+verbose output suppressed, use <detail> or <extensive> for full protocol decode
+Address resolution is OFF.
+Listening on lo0, capture size 96 bytes
+
+^C
+1070 packets received by filter
+0 packets dropped by kernel
+root@ar01-n:RE:0% 
+
+
 
 CHANGE ROOT LOGIN SO THE ABOVE AND BELOW WORKS
 
